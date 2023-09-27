@@ -1,0 +1,16 @@
+.keyboard-container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.line-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.line-container > button {
+    border: 1px solid #3fa34d;
+    margin: 2px;
+}

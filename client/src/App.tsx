@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Keyboard from "./components/Keyboard";
+
+const autoComplete = [
+    "mua do combini",
+    "di an/date ",
+    "mua cay tu dong",
+    "mua sieu thi",
+    "an ngoai",
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [entered, setEntered] = useState("0");
+    const [reason, setReason] = useState("");
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleButtonClick = (clicked: string) => {
+        switch (clicked) {
+            case "C":
+                // clear
+                setEntered("0");
+                break;
+            case "Save":
+                // add to use list
+                console.log(entered);
+                break;
+            default:
+                // adding number together
+                setEntered((prev) => {
+                    prev = String(prev) + clicked;
+                    // removing starting 0
+                    return String(Number(prev));
+                });
+        }
+    };
+
+    return (
+        <>
+            <h1>{entered}</h1>
+            <div style={{ margin: "20px auto" }}>
+                <input
+                    type="text"
+                    style={{ width: "95%", borderRadius: 5 }}
+                    onChange={(e) => setReason(e.currentTarget.value)}
+                    value={reason}
+                />
+                <div
+                    style={{ display: "flex", flexWrap: "wrap", marginTop: 10 }}
+                >
+                    {autoComplete.map((sentence, i) => (
+                        <div
+                            key={`autoComplete_${i}`}
+                            style={{
+                                borderRadius: 5,
+                                margin: 5,
+                                padding: 3,
+                                border: "1px solid #054a29",
+                            }}
+                            onClick={() => {
+                                setReason(sentence);
+                            }}
+                        >
+                            {sentence}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <Keyboard onClick={handleButtonClick} />
+        </>
+    );
 }
 
-export default App
+export default App;
