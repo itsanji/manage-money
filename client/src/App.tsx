@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Keyboard from "./components/Keyboard";
+import Keyboard from "./components/Keyboard/Keyboard";
+import Autocomplete from "./components/autocomplete/Autocomplete";
 
 const autoComplete = [
     "mua do combini",
@@ -9,6 +10,8 @@ const autoComplete = [
     "mua sieu thi",
     "an ngoai",
 ];
+
+const numberAutoComplete = ["500", "1000", "3000", "5000", "7000", "10000"];
 
 function App() {
     const [entered, setEntered] = useState("0");
@@ -34,37 +37,32 @@ function App() {
         }
     };
 
+    const fillReason = (sentence: string) => {
+        setReason(sentence);
+    };
+
     return (
         <>
             <h1>{entered}</h1>
+
             <div style={{ margin: "20px auto" }}>
                 <input
                     type="text"
-                    style={{ width: "95%", borderRadius: 5 }}
+                    style={{ width: "95%" }}
                     onChange={(e) => setReason(e.currentTarget.value)}
                     value={reason}
                 />
-                <div
-                    style={{ display: "flex", flexWrap: "wrap", marginTop: 10 }}
-                >
-                    {autoComplete.map((sentence, i) => (
-                        <div
-                            key={`autoComplete_${i}`}
-                            style={{
-                                borderRadius: 5,
-                                margin: 5,
-                                padding: 3,
-                                border: "1px solid #054a29",
-                            }}
-                            onClick={() => {
-                                setReason(sentence);
-                            }}
-                        >
-                            {sentence}
-                        </div>
-                    ))}
-                </div>
+                <Autocomplete
+                    autocompletes={autoComplete}
+                    onClick={fillReason}
+                />
+                <hr />
+                <Autocomplete
+                    autocompletes={numberAutoComplete}
+                    onClick={fillReason}
+                />
             </div>
+
             <Keyboard onClick={handleButtonClick} />
         </>
     );

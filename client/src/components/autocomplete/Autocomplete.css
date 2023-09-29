@@ -1,0 +1,21 @@
+.autocomplete_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.autocomplete_selection {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #054a29;
+}
+
+.autocomplete_selection:active {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #fff;
+    background-color: #054a29;
+    color: #fff;
+}
