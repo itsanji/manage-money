@@ -14,3 +14,11 @@
     border: 1px solid #3fa34d;
     margin: 2px;
 }
+
+.line-container > button:active {
+    border: 1px solid #fff;
+    background-color: #3fa34d;
+    color: #fff;
+    margin: 2px;
+    outline: none;
+}
