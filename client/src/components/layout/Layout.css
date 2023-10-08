@@ -1,0 +1,14 @@
+.layout_nav-container {
+    display: flex;
+    height: 10vh;
+}
+
+.layout_nav-container li {
+    list-style: none;
+}
+
+.layout_centering {
+    max-width: 1280px;
+    margin: auto;
+    padding: 2rem;
+}
